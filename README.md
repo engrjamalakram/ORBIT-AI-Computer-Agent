@@ -66,3 +66,23 @@ User
       New Observation
            │
            └──────────► Claude
+
+## Demonstration
+
+### 1. Natural-Language Computer Control
+
+ORBIT can interpret a natural-language instruction and operate Windows applications through its computer-control tools.
+
+![ORBIT controlling Microsoft Word](docs/images/screenshot1.png)
+
+### 2. Screen Understanding
+
+ORBIT can inspect the current desktop state and identify visible applications and windows before deciding how to proceed.
+
+![ORBIT analyzing the Windows desktop](docs/images/screenshot2.png)
+
+### 3. Security Gateway
+
+Consequential operations are intercepted by ORBIT's security gateway and require explicit user confirmation before execution.
+
+![ORBIT security confirmation](docs/images/screenshot3.png)
