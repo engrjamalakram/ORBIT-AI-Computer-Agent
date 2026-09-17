@@ -66,6 +66,7 @@ User
       New Observation
            │
            └──────────► Claude
+```
 
 ## Demonstration
 
