@@ -1,0 +1,20 @@
+# SECRETS - never commit. This file holds the keys to your machine.
+.env
+.env.local
+*.key
+
+# runtime
+.venv/
+.runtime/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+
+# editors / OS
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+
+.claude/

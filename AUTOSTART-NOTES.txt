@@ -1,0 +1,71 @@
+ORBIT - SURVIVING A POWER CUT WHILE YOU ARE OUT
+==============================================
+
+What is now automatic
+---------------------
+1. Starts when you log in (Task Scheduler, no delay - faster than the old
+   Startup folder, which Windows deliberately delayed).
+2. A watchdog checks every 3 minutes. If she is not running - crashed,
+   killed, or never started - it starts her. Costs nothing when she is fine.
+3. If the internet is down she does NOT give up. She waits, checking every
+   5 seconds, and connects the instant the line comes back.
+4. When she reconnects after being away a while, she messages you on Discord:
+   "ORBIT is back online (was offline about 2h 14m)".
+
+So: router reboots, Wi-Fi drops, she crashes -> she comes back on her own.
+
+
+The one thing that still needs YOU (one-time)
+---------------------------------------------
+A power cut is different from a network drop, because the laptop may switch
+off completely. When it powers back on, Windows stops at the LOGIN SCREEN.
+
+Until someone logs in, there is no desktop session - so nothing can run, and
+screenshots are impossible (there is literally no screen to capture).
+
+To make recovery fully hands-free you need automatic login:
+
+  1. Press Win+R, type:  netplwiz   and press Enter
+  2. Untick "Users must enter a user name and password to use this computer"
+  3. Click Apply, type your Windows password twice, OK
+  4. Restart once to confirm it logs straight to the desktop
+
+If you do not see that tickbox (common on Windows 10/11 with a Microsoft
+account), enable it first:
+  - Win+R -> regedit
+  - Go to: HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\PasswordLess\Device
+  - Set  DevicePasswordLessBuildVersion  to  0
+  - Reopen netplwiz and the tickbox appears
+
+SECURITY NOTE: auto-login means anyone who physically opens the laptop lid
+gets straight into your desktop. Only do this if the laptop stays somewhere
+you trust.
+
+
+Two more settings worth doing
+-----------------------------
+- Stop it sleeping (a sleeping laptop is an offline laptop):
+    Settings > System > Power & sleep
+      Screen: whatever you like
+      Sleep : NEVER (at least while plugged in)
+    Settings > System > Power & sleep > Additional power settings
+      > Choose what closing the lid does > When plugged in: Do nothing
+
+- Turn back on by itself after the power returns:
+    Most laptops will NOT power on by themselves - the battery keeps them
+    alive during a short cut, and after a long cut they stay off.
+    Check your BIOS for an option like "Restore on AC Power Loss" or
+    "AC Recovery" and set it to "Power On" if your model has it.
+    (Many laptops do not. If yours does not, a short cut is survivable on
+    battery, but a long one will need you to press the power button.)
+
+
+Checking it works
+-----------------
+  Task Scheduler (Win+R -> taskschd.msc) -> look for "ORBIT" and "ORBIT Watchdog"
+
+  Force a test:  open Task Manager, kill python.exe,
+                 wait 3 minutes -> she should come back by herself
+                 and post "back online" in Discord.
+
+  To remove:     REMOVE_AUTOSTART.bat
